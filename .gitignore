@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+build/
+dist/
+coverage/
+
+# Local runtime data & temporary captures
+data/
+.aistudio/
+.playwright-cli/
+public/assets/aistudio/
+
+# Environment variables
+.env*
+!.env.example
+
+# OS & Editor files
+.DS_Store
+*.log
+.idea/
+.vscode/
+

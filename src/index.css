@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@keyframes filmScroll {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes shutterSweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-film-scroll {
+  animation: filmScroll 0.75s linear infinite;
+}
+
+.animate-shutter-sweep {
+  animation: shutterSweep 0.75s ease-in-out infinite;
+}
+
