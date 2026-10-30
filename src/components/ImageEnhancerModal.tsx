@@ -246,15 +246,15 @@ export const ImageEnhancerModal: React.FC<ImageEnhancerModalProps> = ({
         <div className="flex items-center justify-between border-b border-[#E2DDD3] pb-4">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-[#1C1917] text-white flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-amber-400" />
+              <Maximize2 className="w-4 h-4 text-amber-400" />
             </div>
             <div>
-              <h3 className="text-lg font-serif font-bold text-[#1C1917]">AI Image Enhancement & Super-Resolution</h3>
-              <p className="text-xs text-[#6B6458]">Restore fine details, reduce noise, and upscale resolution for printing.</p>
+              <h3 className="text-lg font-serif font-bold text-[#1C1917]">Optical Enlarger &amp; Super-Resolution</h3>
+              <p className="text-xs text-[#6B6458]">Restore fine luminance detail, reduce grain noise, and upscale resolution for 300+ DPI prints.</p>
             </div>
           </div>
 
-          <button onClick={onClose} className="p-1.5 text-[#8C8275] hover:text-[#1C1917] rounded-md transition-colors">
+          <button onClick={onClose} aria-label="Close Optical Enlarger" className="p-1.5 text-[#8C8275] hover:text-[#1C1917] rounded-md transition-colors">
             <X className="w-5 h-5" />
           </button>
         </div>

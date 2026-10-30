@@ -375,6 +375,76 @@ export function playTactileClickSound(): void {
   }
 }
 
+let lastDetentTimestamp = 0;
+
+/**
+ * 4C. Precision Enlarger Aperture Ring / Slider Micro-Detent Tick
+ * Throttled to fire at most every 45ms when scrubbing continuous tonal or optical sliders.
+ */
+export function playRotaryDetentSound(): void {
+  if (!getSoundEnabled()) return;
+  const nowMs = Date.now();
+  if (nowMs - lastDetentTimestamp < 45) return;
+  lastDetentTimestamp = nowMs;
+
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(1920, now);
+    osc.frequency.exponentialRampToValueAtTime(440, now + 0.011);
+
+    gain.gain.setValueAtTime(0.032, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.012);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start(now);
+    osc.stop(now + 0.014);
+  } catch {
+    // Ignore audio context restrictions
+  }
+}
+
+/**
+ * 4D. Film Stock Emulsion Selector Latch
+ * Dual-detent mechanical turret click when switching 35mm film stocks in the editor.
+ */
+export function playPresetSwitchSound(): void {
+  if (!getSoundEnabled()) return;
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+
+    [0, 0.028].forEach((offset, idx) => {
+      const t = now + offset;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(idx === 0 ? 1180 : 1640, t);
+      osc.frequency.exponentialRampToValueAtTime(idx === 0 ? 290 : 380, t + 0.02);
+
+      gain.gain.setValueAtTime(idx === 0 ? 0.055 : 0.075, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.022);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(t);
+      osc.stop(t + 0.024);
+    });
+  } catch {
+    // Ignore audio context restrictions
+  }
+}
+
+
 /**
  * 5. Darkroom Print Roller Eject, Paper Guillotine Cutter & Completion Chime
  * Plays when exporting/downloading a photo strip, opening the print sheet, or generating a share QR code.

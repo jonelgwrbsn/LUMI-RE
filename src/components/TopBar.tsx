@@ -39,33 +39,28 @@ export const TopBar: React.FC<TopBarProps> = ({
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#E2DDD3] bg-[#F6F3EC]/95 backdrop-blur-xs">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Brand Identity */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-4 sm:gap-8">
+        {/* Zone 1: Single-line Brand Wordmark */}
         <button
+          type="button"
           onClick={() => {
             playTactileClickSound();
             onNavigate('landing');
           }}
-          className="flex items-center gap-3 text-left group focus:outline-none"
+          className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[#1C1917] hover:text-[#6B2D38] transition-colors whitespace-nowrap shrink-0 focus:outline-none"
         >
-          <div className="flex items-baseline gap-2">
-            <span className="font-serif text-2xl font-bold tracking-tight text-[#1C1917] group-hover:text-[#6B2D38] transition-colors">
-              LUMIÈRE
-            </span>
-            <span className="font-mono text-[11px] uppercase tracking-widest text-[#78716C] border border-[#D6CFC1] px-1.5 py-0.5 rounded-xs">
-              35MM
-            </span>
-          </div>
+          LUMIÈRE 35MM
         </button>
 
-        {/* Center Navigation Steps */}
-        <nav className="hidden md:flex items-center gap-8 text-xs font-medium tracking-wide uppercase">
+        {/* Zone 2: Center Navigation Steps */}
+        <nav className="hidden md:flex items-center gap-8 text-xs font-medium tracking-wide">
           <button
+            type="button"
             onClick={() => {
               playTactileClickSound();
               onNavigate('landing');
             }}
-            className={`transition-colors py-1 ${
+            className={`transition-colors py-1 whitespace-nowrap shrink-0 ${
               currentStep === 'landing'
                 ? 'text-[#6B2D38] font-semibold border-b-2 border-[#6B2D38]'
                 : 'text-[#6B6458] hover:text-[#1C1917]'
@@ -74,11 +69,12 @@ export const TopBar: React.FC<TopBarProps> = ({
             01. Studio Overview
           </button>
           <button
+            type="button"
             onClick={() => {
               playTactileClickSound();
               onNavigate('camera');
             }}
-            className={`transition-colors py-1 flex items-center gap-1.5 ${
+            className={`transition-colors py-1 flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
               currentStep === 'camera'
                 ? 'text-[#6B2D38] font-semibold border-b-2 border-[#6B2D38]'
                 : 'text-[#6B6458] hover:text-[#1C1917]'
@@ -88,11 +84,12 @@ export const TopBar: React.FC<TopBarProps> = ({
             <span>02. Capture Booth</span>
           </button>
           <button
+            type="button"
             onClick={() => {
               playTactileClickSound();
               onNavigate('editor');
             }}
-            className={`transition-colors py-1 flex items-center gap-1.5 ${
+            className={`transition-colors py-1 flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
               currentStep === 'editor'
                 ? 'text-[#6B2D38] font-semibold border-b-2 border-[#6B2D38]'
                 : 'text-[#6B6458] hover:text-[#1C1917]'
@@ -103,8 +100,8 @@ export const TopBar: React.FC<TopBarProps> = ({
           </button>
         </nav>
 
-        {/* Quick Actions & Global Studio Sound Toggle */}
-        <div className="flex items-center gap-2.5">
+        {/* Zone 3: Quick Actions & Global Studio Sound Toggle */}
+        <div className="flex items-center gap-2 shrink-0">
           <Tooltip
             content={soundOn ? 'Mute Studio Audio' : 'Enable Studio Audio'}
             position="bottom"
@@ -113,7 +110,7 @@ export const TopBar: React.FC<TopBarProps> = ({
               type="button"
               onClick={handleToggleSound}
               aria-label={soundOn ? 'Mute Studio Audio' : 'Unmute Studio Audio'}
-              className="p-2 text-xs font-medium text-[#575249] bg-[#EFECE3] hover:bg-[#E2DDD3] border border-[#D9D1C2] rounded-md transition-colors flex items-center gap-1.5"
+              className="min-h-[38px] px-2.5 py-1.5 text-xs font-medium text-[#575249] bg-[#EFECE3] hover:bg-[#E2DDD3] border border-[#D9D1C2] rounded-md transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0"
             >
               {soundOn ? (
                 <Volume2 className="w-3.5 h-3.5 text-[#1C1917]" />
@@ -128,12 +125,13 @@ export const TopBar: React.FC<TopBarProps> = ({
 
           <Tooltip content="Reset Current Booth Session" position="bottom">
             <button
+              type="button"
               onClick={() => {
                 playTactileClickSound();
                 onResetSession();
               }}
               aria-label="Reset Session"
-              className="p-2 text-xs font-medium text-[#575249] hover:text-[#1C1917] bg-[#EFECE3] hover:bg-[#E2DDD3] rounded-md transition-colors flex items-center gap-1.5"
+              className="min-h-[38px] px-2.5 py-1.5 text-xs font-medium text-[#575249] hover:text-[#1C1917] bg-[#EFECE3] hover:bg-[#E2DDD3] rounded-md transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Reset</span>
@@ -142,24 +140,26 @@ export const TopBar: React.FC<TopBarProps> = ({
 
           {currentStep !== 'camera' ? (
             <button
+              type="button"
               onClick={() => {
                 playTactileClickSound();
                 onNavigate('camera');
               }}
-              className="px-4 py-2 text-xs font-semibold text-white bg-[#1C1917] hover:bg-[#6B2D38] rounded-md transition-colors flex items-center gap-2 shadow-xs"
+              className="min-h-[38px] px-3.5 py-1.5 text-xs font-semibold text-white bg-[#1C1917] hover:bg-[#6B2D38] rounded-md transition-colors flex items-center gap-1.5 shadow-xs whitespace-nowrap shrink-0"
             >
-              <Camera className="w-3.5 h-3.5" />
+              <Camera className="w-3.5 h-3.5 shrink-0" />
               <span>Take Photos</span>
             </button>
           ) : (
             <button
+              type="button"
               onClick={() => {
                 playTactileClickSound();
                 onNavigate('editor');
               }}
-              className="px-4 py-2 text-xs font-semibold text-white bg-[#6B2D38] hover:bg-[#52212A] rounded-md transition-colors flex items-center gap-2 shadow-xs"
+              className="min-h-[38px] px-3.5 py-1.5 text-xs font-semibold text-white bg-[#6B2D38] hover:bg-[#52212A] rounded-md transition-colors flex items-center gap-1.5 shadow-xs whitespace-nowrap shrink-0"
             >
-              <Sliders className="w-3.5 h-3.5" />
+              <Sliders className="w-3.5 h-3.5 shrink-0" />
               <span>Customize Strip</span>
             </button>
           )}

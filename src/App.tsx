@@ -71,7 +71,7 @@ export default function App() {
     if (targetStep === 'editor' && capturedPhotos.length === 0) {
       setCapturedPhotos(STUDIO_SAMPLE_PHOTOS);
     }
-    if (currentStep === 'camera' && targetStep === 'editor') {
+    if (targetStep === 'editor' && currentStep !== 'editor') {
       playFilmAdvanceSound();
       setPendingStep('editor');
       setIsAdvancingFilm(true);
@@ -152,6 +152,7 @@ export default function App() {
       <FilmAdvanceOverlay
         isActive={isAdvancingFilm}
         onComplete={handleFilmAdvanceComplete}
+        photos={capturedPhotos}
       />
 
       <TopBar
